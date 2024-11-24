@@ -1,0 +1,25 @@
+# dependencies
+node_modules
+
+# Environment variables
+.env
+.env.local
+
+
+# IntelliJ IDEA / WebStorm / PyCharm
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# OS-specific files
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+
+# Other temporary files
+*.tmp
+*.bak
