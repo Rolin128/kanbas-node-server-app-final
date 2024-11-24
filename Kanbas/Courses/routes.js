@@ -2,6 +2,7 @@ import * as dao from "./dao.js";
 import * as courseDao from "../Courses/dao.js";
 import * as modulesDao from "../Modules/dao.js";
 import * as assignmentsDao from "../Assignments/dao.js";
+import * as quizzesDao from "../Quizzes/dao.js";
 export default function CourseRoutes(app) {
     app.get("/api/courses", (req, res) => {
         const courses = dao.findAllCourses();
@@ -46,7 +47,7 @@ export default function CourseRoutes(app) {
         const newModule = modulesDao.createModule(module);
         res.send(newModule);
     });
-    //retieve the assignments for that course
+    //retrieve the assignments for that course
     app.get("/api/courses/:courseId/assignments", (req, res) => {
         const { courseId } = req.params;
         const assignments = assignmentsDao.findAssignmentsForCourse(courseId);
@@ -67,6 +68,24 @@ export default function CourseRoutes(app) {
         const newAssignment = assignmentsDao.createAssignment(assignment);
         res.send(newAssignment);
     });
+    //retrieve the quizzes for that course
+    app.get("/api/courses/:courseId/quizzes", (req, res) => {
+        const { courseId } = req.params;
+        const quizzes = quizzesDao.findQuizzesForCourse(courseId);
+        res.json(quizzes);
+    });
+    app.post("/api/courses/:courseId/quizzes", (req, res) => {
+        const { courseId } = req.params;
+        const quiz = {
+            course: courseId,
+            title: "DEFAULT",
+            "due": "2023-06-20",
+            "available": "2023-06-01",
+            "until": "2023-06-30",
 
+        };
+        const newQuiz = quizzesDao.createQuizzes(quiz);
+        res.send(newQuiz);
+    });
 
 }
