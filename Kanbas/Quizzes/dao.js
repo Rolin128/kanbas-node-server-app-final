@@ -3,6 +3,12 @@ export function findQuizzesForCourse(courseId) {
     const { quizzes } = Database;
     return quizzes.filter((quiz) => quiz.course === courseId);
 }
+export function deleteQuiz(quizId) {
+    const { quizzes } = Database;
+    Database.quizzes = quizzes.filter(
+        (quiz) => quiz._id !== quizId
+    );
+}
 
 export function createQuizzes(quiz) {
     const newQuiz= { ...quiz, _id: Date.now().toString() };

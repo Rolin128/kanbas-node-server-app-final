@@ -8,6 +8,7 @@ export function createAssignment(assignment) {
     Database.assignments = [...Database.assignments, newAssignment];
     return newAssignment;
 }
+
 export function deleteAssignment(assignmentId) {
     const { assignments } = Database;
     Database.assignments = assignments.filter(

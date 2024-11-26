@@ -74,14 +74,17 @@ export default function CourseRoutes(app) {
         const quizzes = quizzesDao.findQuizzesForCourse(courseId);
         res.json(quizzes);
     });
-    app.post("/api/courses/:courseId/quizzes", (req, res) => {
+    app.post("/api/courses/:courseId/quizzes/addNewQuiz", (req, res) => {
         const { courseId } = req.params;
         const quiz = {
+            _id: new Date().getTime().toString(),
             course: courseId,
-            title: "DEFAULT",
-            "due": "2023-06-20",
-            "available": "2023-06-01",
-            "until": "2023-06-30",
+            title: req.body.title||"default",
+            points: req.body.points || 100,
+            due: req.body.due || "2024-05-13T23:59",
+            available: req.body.available || "2024-05-06T23:59",
+            until: req.body.until || "2024-05-20T23:59",
+            published: req.body.published || false,
 
         };
         const newQuiz = quizzesDao.createQuizzes(quiz);
