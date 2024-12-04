@@ -26,6 +26,7 @@ const fillBlankSchema = new mongoose.Schema(
 
 const questionSchema = new mongoose.Schema({
     title: String,
+    pts: Number,
     quiz: { type: mongoose.Schema.Types.ObjectId, ref: "QuizzesModel" },
     questionType: {
         type: String,
