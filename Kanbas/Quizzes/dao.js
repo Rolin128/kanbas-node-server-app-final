@@ -1,30 +1,24 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 
 export function findQuizzesForCourse(courseId) {
-  const { quizzes } = Database;
-  return quizzes.filter((quiz) => quiz.course === courseId);
+  return model.find({ course: courseId });
 }
 export function deleteQuiz(quizId) {
-  const { quizzes } = Database;
-  Database.quizzes = quizzes.filter((quiz) => quiz._id !== quizId);
+  return model.deleteOne({ _id: quizId });
 }
 
 export function createQuizzes(quiz) {
-  const newQuiz = { ...quiz, _id: Date.now().toString() };
-  Database.quizzes = [...Database.quizzes, newQuiz];
-  return newQuiz;
+  delete quiz._id
+  return quiz.create(quiz);
 }
 export function updateQuiz(quizId, quizUpdates) {
-  const { quizzes } = Database;
-  const quiz = quizzes.find((quiz) => quiz._id === quizId);
-  Object.assign(quiz, quizUpdates);
-  return quiz;
+  return model.updateOne({ _id: quizId }, quizUpdates);
 }
 
-export const findQuizById = async (quizId, courseId) => {
-  const { quizzes } = Database;
-  const quiz = quizzes.find(
-    (quiz) => quiz._id.toUpperCase() === quizId.toUpperCase() && quiz.course.toUpperCase() == courseId.toUpperCase()
-  );
-  return quiz;
-};
+// export const findQuizById = async (quizId, courseId) => {
+//   const { quizzes } = Database;
+//   const quiz = quizzes.find(
+//     (quiz) => quiz._id.toUpperCase() === quizId.toUpperCase() && quiz.course.toUpperCase() == courseId.toUpperCase()
+//   );
+//   return quiz;
+// };
