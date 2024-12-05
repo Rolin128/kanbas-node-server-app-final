@@ -3,6 +3,7 @@ export default function ModuleRoutes(app) {
     //update module
     app.put("/api/modules/:moduleId", async (req, res) => {
         const { moduleId } = req.params;
+        console.log("moduleId",moduleId);
         const moduleUpdates = req.body;
         const status = await modulesDao.updateModule(moduleId, moduleUpdates);
         res.send(status);
@@ -10,6 +11,7 @@ export default function ModuleRoutes(app) {
 
     app.delete("/api/modules/:moduleId", async (req, res) => {
         const { moduleId } = req.params;
+        console.log("moduleId",moduleId);
         const status = await modulesDao.deleteModule(moduleId);
         res.send(status);
     });

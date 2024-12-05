@@ -46,8 +46,10 @@ export default function CourseRoutes(app) {
     res.json(modules);
   });
   //add new model
-  app.post("/api/courses/:courseId/modules", async (req, res) => {
-    const { courseId } = req.params;
+  app.post("/api/courses/:courseId/modules/addNewModel", async (req, res) => {
+    const { courseId,addNewModel } = req.params;
+    console.log("newmodule",addNewModel);
+    console.log("courseIId",courseId);
     const module = {
       ...req.body,
       course: courseId,
@@ -63,7 +65,8 @@ export default function CourseRoutes(app) {
     res.json(assignments);
   });
   app.post("/api/courses/:courseId/assignments/addNewAss", async (req, res) => {
-    const { courseId } = req.params;
+    const { courseId,addNewAss } = req.params;
+    console.log("addNewAss",addNewAss);
     const assignment = {
       ...req.body,
       course: courseId,
