@@ -20,7 +20,7 @@ export default function QuizRoutes(app) {
     res.send(status);
   });
 
-  // app.get("/api/courses/:courseId/quizzes/:quizId", findCourseQuizById);
+  app.get("/api/courses/:courseId/quizzes/:quizId", findCourseQuizById);
 
   app.post("/api/Quizzes/:quizId/questions", async (req, res) => {
     const { quizId } = req.params;
@@ -36,7 +36,5 @@ export default function QuizRoutes(app) {
     const { quizId } = req.params;
     const questions = await questionDao.findQuestionsForQuiz(quizId);
     res.json(questions);
-    });
-
-
+  });
 }

@@ -8,17 +8,13 @@ export function deleteQuiz(quizId) {
 }
 
 export function createQuizzes(quiz) {
-  delete quiz._id
+  delete quiz._id;
   return quiz.create(quiz);
 }
 export function updateQuiz(quizId, quizUpdates) {
   return model.updateOne({ _id: quizId }, quizUpdates);
 }
 
-// export const findQuizById = async (quizId, courseId) => {
-//   const { quizzes } = Database;
-//   const quiz = quizzes.find(
-//     (quiz) => quiz._id.toUpperCase() === quizId.toUpperCase() && quiz.course.toUpperCase() == courseId.toUpperCase()
-//   );
-//   return quiz;
-// };
+export const findQuizById = async (quizId, courseId) => {
+  return model.findOne({ _id: quizId });
+};
