@@ -101,6 +101,7 @@ export default function QuizRoutes(app) {
   app.put("/api/questions/:questionId", async (req, res) => {
     const { questionId } = req.params;
     const questionData = req.body;
+    console.log("questionId01",questionId);
     const updatedQuestion = await questionDao.updateQuestion(questionId, questionData);
     res.send(updatedQuestion);
   });

@@ -49,16 +49,17 @@ export default function QuestionsRoutes(app) {
 //       res.status(500).send(err);
 //     }
 //   }
-
-  const updateQuestion = async (req, res) => {
-    try {
-      const status = await dao.updateQuestion(req.params.questionId, req.body);
-      res.json(status);
-    } catch (err) {
-      console.log("An error occured while question update:"+err);
-      res.status(500).send(err);
-    }
-  }
+  // app.put("/api/questions/:questionId", updateQuestion);
+  // const updateQuestion = async (req, res) => {
+  //   try {
+  //     const status = await dao.updateQuestion(req.params.questionId, req.body);
+  //     console.log("questionId02",questionId);
+  //     res.json(status);
+  //   } catch (err) {
+  //     console.log("An error occured while question update:"+err);
+  //     res.status(500).send(err);
+  //   }
+  // }
 
   const findQuestionsByQuizId = async (req, res) => {
     try {
@@ -85,7 +86,7 @@ export default function QuestionsRoutes(app) {
 
   app.post("/api/quizzes/:quizId/questions", createQuestion);
   app.delete("/api/questions/:questionId", deleteQuestion);
-  app.put("/api/questions/:questionId", updateQuestion);
+  
   app.get("/api/quizzes/:quizId/questions", findQuestionsByQuizId);
   app.get("/api/questions/:questionId", findQuestionById);
 }
