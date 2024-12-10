@@ -11,7 +11,7 @@ const multipleChoiceSchema = new mongoose.Schema(
 const trueFalseSchema = new mongoose.Schema(
     {
         question: { type: String },
-        answer: Boolean,
+        answer: String,
     },
     { _id: false }
 );
@@ -37,7 +37,8 @@ const questionSchema = new mongoose.Schema({
     trueFalse: trueFalseSchema,
     fillBlank: fillBlankSchema,
     description: { type: String }, 
-    answers: { type: mongoose.Schema.Types.Mixed, required: true }, // Flexible field for all answer types
+    //answers: { type: mongoose.Schema.Types.Mixed, required: true }, // Flexible field for all answer types
+    answers: [String],
 },
 { collection: "questions" }
 );
