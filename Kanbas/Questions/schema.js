@@ -30,12 +30,14 @@ const questionSchema = new mongoose.Schema({
     quiz: { type: mongoose.Schema.Types.ObjectId, ref: "QuizzesModel" },
     questionType: {
         type: String,
-        enum: ["Multiple Choice", "True/False", "Fill in the Blank"],
-        default: "Multiple Choice",
+        enum: ["multiple-choice", "fill-in-the-blank" , "true-false"],
+        default: "multiple-choice",
     },
     multipleChoice: multipleChoiceSchema,
     trueFalse: trueFalseSchema,
-    fillBlank: fillBlankSchema
+    fillBlank: fillBlankSchema,
+    description: { type: String }, 
+    answers: { type: mongoose.Schema.Types.Mixed, required: true }, // Flexible field for all answer types
 },
 { collection: "questions" }
 );
