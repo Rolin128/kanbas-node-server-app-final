@@ -33,6 +33,11 @@ const questionSchema = new mongoose.Schema({
         enum: ["multiple-choice", "fill-in-the-blank" , "true-false"],
         default: "multiple-choice",
     },
+    type: {
+        type: String,
+        enum: ["multiple-choice", "fill-in-the-blank" , "true-false"],
+        default: "multiple-choice",
+    },
     multipleChoice: multipleChoiceSchema,
     trueFalse: trueFalseSchema,
     fillBlank: fillBlankSchema,
