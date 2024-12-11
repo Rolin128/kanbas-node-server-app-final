@@ -90,10 +90,17 @@ export default function QuizRoutes(app) {
     res.send(newQuestion);
   });
 
-  // Find all questions for a quiz
+  // Find all questions for a quiz with quiz mapping
   app.get("/api/quizzes/:quizId/questions", async (req, res) => {
     const { quizId } = req.params;
     const questions = await questionDao.findQuestionsForQuiz(quizId);
+    res.json(questions);
+  });
+
+  // Find all questions for a quiz without quiz mapping
+  app.get("/api/quizzes/:quizId/questions/takequiz", async (req, res) => {
+    const { quizId } = req.params;
+    const questions = await questionDao.findQuestionsForQuizNoPtsMapping(quizId);
     res.json(questions);
   });
 
@@ -101,7 +108,7 @@ export default function QuizRoutes(app) {
   app.put("/api/questions/:questionId", async (req, res) => {
     const { questionId } = req.params;
     const questionData = req.body;
-    console.log("questionId01",questionId);
+    console.log("questionId01", questionId);
     const updatedQuestion = await questionDao.updateQuestion(questionId, questionData);
     res.send(updatedQuestion);
   });
