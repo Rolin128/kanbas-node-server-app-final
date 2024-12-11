@@ -9,7 +9,7 @@ export function deleteQuiz(quizId) {
 
 export function createQuizzes(quiz) {
   delete quiz._id;
-  return quiz.create(quiz);
+  return model.create(quiz);
 }
 export function updateQuiz(quizId, quizUpdates) {
   return model.updateOne({ _id: quizId }, quizUpdates);

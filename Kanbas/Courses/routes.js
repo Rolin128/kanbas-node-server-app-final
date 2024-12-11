@@ -111,6 +111,7 @@ export default function CourseRoutes(app) {
       // published: req.body.published || false,
     };
     const newQuiz = await quizzesDao.createQuizzes(quiz);
+    console.log("newQuiz",newQuiz._id);
     res.send(newQuiz);
   });
 }

@@ -50,12 +50,12 @@ export default function QuizRoutes(app) {
     res.send(quiz);
   });
 
-  // Create a quiz for a specific course
-  app.post("/api/courses/:courseId/quizzes", async (req, res) => {
-    const { courseId } = req.params;
-    const quiz = await quizzesDao.createQuiz(courseId, req.body);
-    res.send(quiz);
-  });
+  // // Create a quiz for a specific course
+  // app.post("/api/courses/:courseId/quizzes", async (req, res) => {
+  //   const { courseId } = req.params;
+  //   const quiz = await quizzesDao.createQuiz(courseId, req.body);
+  //   res.send(quiz);
+  // });
 
   // Update a quiz by quizId
   app.put("/api/quizzes/:quizId", async (req, res) => {
