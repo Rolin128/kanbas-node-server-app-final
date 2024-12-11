@@ -16,10 +16,11 @@ export async function storeAttempt(userId, quizId, attempt) {
     return model.create(attempt);
   } else {
     // update attempt history, increment count by 1
-    previousHistory.attemptsTaken += 1;
-    previousHistory.lastAttemptTime = Date.now();
-    previousHistory.lastAttemptScore = attempt.lastAttemptScore;
-    previousHistory.lastAttemptAnswers += attempt.lastAttemptAnswers;
-    return model.updateOne({ _id: previousHistory._id }, previousHistory);
+    attempt._id = previousHistory._id;
+    attempt.user = userId;
+    attempt.quiz = quizId;
+    attempt.attemptsTaken = previousHistory.attemptsTaken + 1;
+    attempt.lastAttemptTime = Date.now();
+    return model.updateOne({ _id: previousHistory._id }, attempt);
   }
 }
