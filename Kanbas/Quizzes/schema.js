@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-const quizzesSchema = new mongoose.Schema({
+const quizzesSchema = new mongoose.Schema(
+  {
     title: String,
     course: { type: mongoose.Schema.Types.ObjectId, ref: "CourseModel" },
     description: String,
@@ -18,16 +19,17 @@ const quizzesSchema = new mongoose.Schema({
     timeLimit: Number,
     accessCode: String,
     quizType: {
-        type: String,
-        enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],
-        default: "Graded Quiz",
+      type: String,
+      enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],
+      default: "Graded Quiz",
     },
     assignmentGroup: {
-        type: String,
-        enum: ["Quizzes", "Exams", "Assignments", "Projects"],
-        default: "Quizzes",
+      type: String,
+      enum: ["Quizzes", "Exams", "Assignments", "Projects"],
+      default: "Quizzes",
     },
-},
-    { collection: "quizzes" }
+    maxAttempts: Number,
+  },
+  { collection: "quizzes" }
 );
 export default quizzesSchema;
