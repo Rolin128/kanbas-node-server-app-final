@@ -9,12 +9,13 @@ export function deleteQuiz(quizId) {
 
 export function createQuizzes(quiz) {
   delete quiz._id;
+  quiz.maxAttempts = 1; // TODO: don't hard code
   return model.create(quiz);
 }
 export function updateQuiz(quizId, quizUpdates) {
   return model.updateOne({ _id: quizId }, quizUpdates);
 }
 
-export const findQuizById = async (quizId, courseId) => {
+export const findQuizById = async (quizId) => {
   return model.findOne({ _id: quizId });
 };

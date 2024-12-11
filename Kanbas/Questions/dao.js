@@ -5,9 +5,9 @@
 //     return model.create(question);
 // }
 
-// export function findQuestionsForQuiz(quizId) {
-//     return model.find({ quiz: quizId });
-// }
+export function findQuestionsForQuizNoPtsMapping(quizId) {
+  return model.find({ quiz: quizId });
+}
 
 // export function deleteQuestion(questionId) {
 //     return model.deleteOne({ _id: questionId });
@@ -25,7 +25,6 @@ function mapPtsToPoints(question) {
   const { pts, ...rest } = question.toObject(); // Use `.toObject()` for plain JavaScript object
   return { ...rest, points: pts }; // Add `points` field
 }
-
 
 export function createQuestion(question) {
   delete question._id;
@@ -59,4 +58,3 @@ export async function updateQuestion(questionId, questionUpdates) {
   }
   return model.updateOne({ _id: questionId }, questionUpdates);
 }
-
