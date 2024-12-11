@@ -57,7 +57,10 @@ export default function QuizRoutes(app) {
     quiz = quiz.toJSON();
     const attemptHistory = await attemptDao.getAttemptHistory(currentUser._id, quizId);
     quiz.attemptHistory = attemptHistory;
-    quiz.maxAttempts = 1; // TODO: don't hard code
+    if (!quiz.maxAttempts) {
+      quiz.maxAttempts = 1; // TODO: remove this once max attempts is always set.
+    }
+
     res.send(quiz);
   };
 
