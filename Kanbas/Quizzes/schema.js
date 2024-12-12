@@ -18,6 +18,8 @@ const quizzesSchema = new mongoose.Schema(
     webcamRequired: Boolean,
     timeLimit: Number,
     accessCode: String,
+    question_num:Number,
+    point_Totle:Number,
     quizType: {
       type: String,
       enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],

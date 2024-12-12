@@ -28,11 +28,6 @@ const questionSchema = new mongoose.Schema({
     title: String,
     pts: Number,
     quiz: { type: mongoose.Schema.Types.ObjectId, ref: "QuizzesModel" },
-    questionType: {
-        type: String,
-        enum: ["multiple-choice", "fill-in-the-blank" , "true-false"],
-        default: "multiple-choice",
-    },
     type: {
         type: String,
         enum: ["multiple-choice", "fill-in-the-blank" , "true-false"],
